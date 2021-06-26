@@ -12,3 +12,6 @@ for every root if it is none then return 0 it is the base case, the exporting po
 else we will find the longest leaf route, right or left, it can also using find the root and to see the root.left and root.right which one is larger. 
 the larger one should + 1(depth of the root)
 """
+"""
+for class, a object call a function should use self.functionname(variable), see the vairable in the defination of the function 
+"""
