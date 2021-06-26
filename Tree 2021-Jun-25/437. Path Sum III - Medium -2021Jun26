@@ -1,0 +1,39 @@
+
+
+"""
+slow method : two recursion O(n**2)
+"""
+
+class Solution:
+    def pathSum(self, root: TreeNode, targetSum: int) -> int:
+   
+    #two recursion:
+    #the outlayer recursion: change the root point 
+    #the inner recursion: find at this root point, how many route do we have equal to the sum 
+    
+        #Edge Case, since we need to return an integer, 
+        #so if we don't have the root, it should return 0
+        if root is None:
+            return 0
+        
+        # Process: helper funxtion:
+        # the seconde recursion 
+        def dfs(root,targetSum):
+            # edge case
+            count = 0
+            if root is None:
+                return 0
+            
+            # process
+            if root.val == targetSum:
+                count +=1
+            targetSum -= root.val
+           
+            # recursion relationship
+            # count need to add all possible 
+            count += dfs(root.right,targetSum)
+            count += dfs(root.left, targetSum)
+            return count     
+
+        # Recursion relationship
+        return dfs(root,targetSum) + self.pathSum(root.right,targetSum) + self.pathSum(root.left,targetSum)
