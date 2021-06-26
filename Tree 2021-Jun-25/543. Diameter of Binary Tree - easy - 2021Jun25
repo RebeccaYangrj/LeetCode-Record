@@ -1,0 +1,28 @@
+    def diameterOfBinaryTree(self, root: TreeNode) -> int:
+        res = []
+        
+        def depth(node: TreeNode):
+            #base case
+            if node is None:
+                return 0
+            #recursion relationship
+            left = depth(node.left)
+            right = depth (node.right)
+            dia = left + right 
+            res.append(dia)
+            return max(left,right)+1
+        
+        height(root)
+        return max(res)
+        
+"""
+similar to find the depth, every time find a node depth we can get the diameter of the node: diameter = right + left
+we can store the diameter in a list 
+after run the recursion we can use the max(list) to find our final results
+"""
+"""
+inside a function, when we have to build anothe function we should use other variable name 
+to indicate the possible variable will be used when we call this function 
+we can not use the variable directly 
+when we use this function we can input the overall variable instead.
+"""
