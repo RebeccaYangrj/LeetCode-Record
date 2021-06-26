@@ -1,0 +1,64 @@
+       
+       
+       
+       
+       
+class Solution:
+    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+        # use the middle number to be the root, and smaller side build root.left part
+        # and larger side build root.right part. for the root.lefta and root.right is 
+        # same recursion as the the root one
+        
+        # build a fxn to run the list, we just use the list boundary as the indicator
+        # l, r is the boundary of the list 
+        def helper(l,r):
+            # base case:
+            if l > r :
+                return None
+            # build root, find the middle point
+            p = (l+r)//2
+            root = TreeNode(nums[p])
+            
+            # recursion relationship
+            root.left = helper(l,p-1)
+            root.right = helper(p+1,r)
+            return root
+        
+        return helper(0,len(nums)-1)
+     
+       
+       
+    """   
+     Part 2.  Wrong answer: 
+     I just insert half of the array, left part all add to root.left, same as the right part. 
+     but when the input number is larger than 6, I will get the depth of left is 4 and for root.left we will 
+     violete the defination of height - balanced binary tree: A height-balanced binary tree is a binary tree in which the depth of the two subtrees of every node never differs by more than one.
+       if len(nums) % 2 == 1:
+            num = len(nums)//2
+            root = TreeNode(nums[num])
+            p =root
+            for n in reversed(range(num)):
+                root.left = TreeNode(nums[n])
+                root = root.left
+            root = p 
+        
+            for n in range(num+1,len(nums)):
+                root.right = TreeNode(nums[n])
+                root = root.right
+            root = p
+        else:
+            num = len(nums)//2
+            root = TreeNode(nums[num])
+            p =root
+            for n in reversed(range(num)):
+                root.left = TreeNode(nums[n])
+                root = root.left
+            root = p 
+        
+            for n in range(num+1,len(nums)):
+                root.right = TreeNode(nums[n])
+                root = root.right
+            root = p
+        return root
+        
+     """
