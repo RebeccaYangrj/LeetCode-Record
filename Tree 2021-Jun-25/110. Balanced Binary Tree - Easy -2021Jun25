@@ -1,0 +1,17 @@
+class Solution:
+    
+    def depth(self, root: TreeNode):
+        #base case
+        if not root:
+            return 0
+        #recursion relationship
+        return max(self.depth(root.left), self.depth(root.right))+1
+    
+    
+    def isBalanced(self,root: TreeNode):
+        if not root:
+            return True
+        return abs(self.depth(root.right)-self.depth(root.left))<2 and self.isBalanced(root.right) and self.isBalanced(root.left)
+        
+ """
+ """
