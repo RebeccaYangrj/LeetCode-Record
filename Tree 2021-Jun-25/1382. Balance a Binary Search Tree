@@ -1,0 +1,28 @@
+class Solution:
+    def balanceBST(self, root: TreeNode) -> TreeNode:
+        Array = []
+        def getArray(root):
+            if root is None:
+                return None
+            getArray(root.left)
+            Array.append(root.val)
+            getArray(root.right)
+            
+        getArray(root)
+        
+        def helper(l,r):
+            if l > r:
+                return None
+            p = (l+r)//2
+            root = TreeNode(Array[p])
+            root.left = helper(l,p-1)
+            root.right = helper(p+1,r)
+            return root
+            
+        
+        return helper(0,len(Array)-1)
+            
+            
+            """
+            for the whole def function we still need a return1, a function insider a function also need a return2, but return2 will not return to the return1
+            """
