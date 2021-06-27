@@ -1,0 +1,18 @@
+class Solution:
+    def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
+        # construct two printer fast and slow.
+        # let fast run the n firstly, and run with the slow together, so when the fast reach the last point the slow just reach the nth node from the end 
+        # also use dummy as the empty initial point, head = dummy.next
+        dummy = ListNode(0)
+        dummy.next =head
+        fast, slow = dummy, dummy
+        
+        for _ in range(n):
+            fast = fast.next
+            
+        while fast.next:
+            fast = fast.next
+            slow = slow.next 
+        
+        slow.next = slow.next.next 
+        return dummy.next
