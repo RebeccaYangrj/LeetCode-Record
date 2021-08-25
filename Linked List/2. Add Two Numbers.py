@@ -20,25 +20,18 @@ class Solution:
         # 在建立结果的时候不大记得了 linked list数据结构不大记得
         dummy = head = ListNode(None)
         
-        while l1 and l2:
-            carry = l1.val +l2.val+carry
-            l1 = l1.next
-            l2 =l2.next
+        while l1 or l2 or carry:
+            v1 = v2 = 0
+            if l1:
+                v1 = l1.val
+                l1 = l1.next
+            if l2:
+                v2 = l2.val
+                l2 = l2.next
+            carry = v1+v2+carry
             head.next = ListNode(carry%10)
             carry //=10
-        while l1:
-            carry = l1.val +carry
-            l1 = l1.next
-            head.next =ListNode(carry%10)
-            carry //=10
-        while l2:
-            carry = l2.val +carry
-            l2 = l2.next
-            head.next =ListNode(carry%10)
-            carry //=10
-        while carry:
-            head.next =ListNode(carry%10)
-            carry //=10
+            head = head.next
         return dummy.next
         # time : O(n)
         # space: O(n)
